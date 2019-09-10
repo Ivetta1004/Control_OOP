@@ -6,40 +6,36 @@ using System.Threading.Tasks;
 
 namespace Control_OOP
 {
-    public class My_List<T>
+    public class My_List
     {
-        private T[] _array;
+        private object[] _array;
         private int _index;
-        private int _capacity = 10;
+        private int _capacity = 3;
 
         public int Count
         {
             get { return _index; }
         }
-
-        public T this[int index]
+        public object this[int index]
         {
             get => _array[index];
             set => _array[index] = value;
         }
-
         public My_List(int capacity)
         {
             _capacity = capacity;
-            _array = new T[capacity];
+            _array = new object[capacity];
         }
-
         public My_List() => InitArray();
 
         private void InitArray()
         {
-            _array = new T[_capacity];
+            _array = new object[_capacity];
         }
-
         private void ReInitArray()
         {
-            T[] tempArr = _array;
-            _array = new T[_capacity];
+            object[] tempArr = _array;
+            _array = new object[_capacity];
 
             if (_array != null)
             {
@@ -49,7 +45,7 @@ namespace Control_OOP
                 }
             }
         }
-        public void Add(T obj)
+        public void Add(object obj)
         {
             if (_index == _capacity)
             {
@@ -59,9 +55,9 @@ namespace Control_OOP
             _array[_index] = obj;
             _index++;
         }
-        public void Insert(int index, T obj)
+        public void Insert(int index, object obj)
         {
-            T[] tempArr = new T[_array.Length + 1];
+            object[] tempArr = new object[_array.Length + 1];
             for (int i = 0; i < index; i++)
             {
                 tempArr[i] = _array[i];
@@ -73,7 +69,7 @@ namespace Control_OOP
             tempArr[index] = obj;
             _array = tempArr;
         }
-        public void Remove(T obj)
+        public void Remove(object obj)
         {
             int index = IndexOf(obj);
             if (index >= 0)
@@ -81,7 +77,7 @@ namespace Control_OOP
         }
         public void RemoveAt(int index)
         {
-            T[] tempArr = new T[_array.Length - 1];
+            object[] tempArr = new object[_array.Length - 1];
             for (int i = 0; i < index; i++)
             {
                 tempArr[i] = _array[i];
@@ -96,16 +92,16 @@ namespace Control_OOP
         {
             InitArray();
         }
-        public bool Contains(T obj)
+        public bool Contains(object obj)
         {
-            foreach (T ar in _array)
+            foreach (object ar in _array)
             {
                 if (ar.Equals(obj))
                     return true;
             }
             return false;
         }
-        public int IndexOf(T obj)
+        public int IndexOf(object obj)
         {
             for (int i = 0; i < _array.Length; i++)
             {
@@ -114,9 +110,9 @@ namespace Control_OOP
             }
             return -1;
         }
-        public T[] ToArray()
+        public object[] ToArray()
         {
-            T[] tempArr = new T[_array.Length];
+            object[] tempArr = new object[_array.Length];
             for (int i = 0; i < tempArr.Length; i++)
             {
                 tempArr[i] = _array[i];
@@ -125,7 +121,7 @@ namespace Control_OOP
         }
         public void Reverse()
         {
-            T[] tempArr = new T[_array.Length];
+            object[] tempArr = new object[_array.Length];
             for (int i = _array.Length - 1, j = 0; i >= 0; i--, j++)
             {
                 tempArr[j] = _array[i];
